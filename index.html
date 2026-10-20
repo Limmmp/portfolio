@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Денис — сайты, боты и приложения | Владивосток</title>
+  <meta name="description" content="Делаю сайты, Telegram- и VK-ботов и мобильные приложения. Сайт с админкой за 7–14 дней: контент обновляете сами, без программиста. Владивосток, работаю по всей России." />
+  <meta name="theme-color" content="#050507" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Денис — сайты, боты и приложения" />
+  <meta property="og:description" content="Сайты с админкой, Telegram- и VK-боты, мобильные приложения. Владивосток." />
+  <meta property="og:image" content="/assets/cases/komp-1-hero.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+</head>
+<body class="is-loading">
+
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- ПРЕЛОАДЕР -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__label">
+        <span>Денис · Владивосток</span>
+        <span id="preloader-status">Загрузка сцены</span>
+      </div>
+      <div class="preloader__count"><span id="preloader-count">0</span>%</div>
+      <div class="preloader__bar"><div class="preloader__fill" id="preloader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- WebGL-сцена: живёт под всем контентом на протяжении всей страницы -->
+  <canvas class="gl-canvas" id="gl"></canvas>
+
+  <!-- Зерно плёнки -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Кастомный курсор -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursor-ring"></div>
+    <div class="cursor__dot" id="cursor-dot"></div>
+    <div class="cursor__label" id="cursor-label"></div>
+  </div>
+
+  <header class="header" id="header">
+    <a class="logo" href="#top" data-cursor="Наверх">Денис<span class="accent">.</span>dev</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#work">Работы</a>
+      <a href="#services">Услуги</a>
+      <a href="#process">Процесс</a>
+      <a href="#about">Обо мне</a>
+    </nav>
+    <a class="btn btn--sm" href="https://t.me/WhoaThatsLimp" target="_blank" rel="noopener" data-magnetic data-cursor="Написать">Telegram</a>
+  </header>
+
+  <!-- Рельса прогресса по актам -->
+  <div class="progress" id="progress" aria-hidden="true">
+    <div class="progress__item" data-progress="work"><span>Работы</span><i></i></div>
+    <div class="progress__item" data-progress="services"><span>Услуги</span><i></i></div>
+    <div class="progress__item" data-progress="process"><span>Процесс</span><i></i></div>
+    <div class="progress__item" data-progress="about"><span>Обо мне</span><i></i></div>
+  </div>
+
+  <div class="page" id="top">
+    <main id="main">
+
+      <!-- ═══ АКТ I — ПУСТОТА ═══ -->
+      <section class="hero" data-theme-section="void">
+        <div class="shell">
+          <p class="hero__meta eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Владивосток · работаю по всей России
+          </p>
+
+          <h1 class="hero__title" id="hero-title">
+            Сайт, который <em>работает за тебя</em>, пока ты занят делом
+          </h1>
+
+          <div class="hero__bottom">
+            <p class="hero__sub" data-fade>
+              Сайты, Telegram- и VK-боты, мобильные приложения. Привожу заявки,
+              показываю услуги и снимаю рутину. С админкой — контент обновляешь
+              сам, без программиста. Запуск за 7–14 дней.
+            </p>
+            <div class="hero__cta" data-fade>
+              <a class="btn" href="https://t.me/WhoaThatsLimp" target="_blank" rel="noopener" data-magnetic data-cursor="Погнали">Обсудить проект</a>
+              <a class="btn btn--ghost" href="#work" data-magnetic data-cursor="Смотреть">Смотреть работы</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__scroll eyebrow" aria-hidden="true">
+          <span class="hero__scroll-line"></span>
+          Листай
+        </div>
+      </section>
+
+      <!-- бегущая строка со стеком -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track" id="ticker">
+          <div class="ticker__item">React<span></span></div>
+          <div class="ticker__item">TypeScript</div>
+          <div class="ticker__item">Three.js</div>
+          <div class="ticker__item">GSAP</div>
+          <div class="ticker__item">WebGL</div>
+          <div class="ticker__item">Supabase</div>
+          <div class="ticker__item">Python</div>
+          <div class="ticker__item">React Native</div>
+          <div class="ticker__item">Flutter</div>
+          <div class="ticker__item">Telegram Bot API</div>
+        </div>
+      </div>
+
+      <!-- манифест -->
+      <section class="manifest section" data-theme-section="void">
+        <div class="shell">
+          <p class="eyebrow" style="margin-bottom: 28px">Что я вообще делаю</p>
+          <p class="manifest__text" data-manifest>
+            Тебя уже знают или к тебе уже идут. Я делаю так, чтобы это работало и без тебя.
+          </p>
+          <p class="manifest__note" data-fade>
+            Ведущий, стример, кузовной центр — задачи разные, принцип один:
+            заявка должна доходить сама. Дальше три работы, и этот сайт
+            перекрасится под каждую, пока ты будешь листать.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══ АКТ II — РАБОТЫ ═══ -->
+      <section class="works" id="work">
+
+        <div class="works__intro shell" data-theme-section="void">
+          <p class="section-num" style="margin-bottom: 20px">01 / Работы</p>
+          <h2 data-split>Избранное</h2>
+          <p data-fade>Личный бренд, медиа и автосервис — три разные задачи и три разных мира. Контент везде обновляют сами, без меня и без программиста.</p>
+        </div>
+
+        <!-- СТРЕЛА — кремовый свет -->
+        <article class="case" data-theme-section="cream">
+          <div class="shell">
+            <header class="case__head">
+              <span class="case__index" aria-hidden="true">01</span>
+              <div>
+                <p class="case__client">Артём Стрельцов · ведущий мероприятий, Владивосток</p>
+                <h3 class="case__title">СТРЕЛА — сайт-визитка с бронью дат</h3>
+              </div>
+            </header>
+
+            <figure class="case__lead" data-case-media>
+              <img src="/assets/cases/strela-1-hero.webp" alt="Первый экран сайта СТРЕЛА: крупная типографика на кремовом фоне, имя ведущего и кнопка брони даты" width="1440" height="900" loading="lazy" decoding="async" />
+            </figure>
+
+            <div class="case__info">
+              <p class="case__text">
+                Сайт ведущего: форматы выступлений, портфолио, отзывы и бронирование
+                даты в два клика. Админка на Supabase — Артём сам меняет форматы,
+                фото и отзывы, не трогая код и не дёргая разработчика.
+              </p>
+              <dl class="case__facts">
+                <div><dt>Задача</dt><dd>Собирать брони дат без переписки в директе</dd></div>
+                <div><dt>Что внутри</dt><dd>Форматы, портфолио, отзывы, бронь даты, админка, заявки в Telegram</dd></div>
+                <div><dt>Стек</dt><dd>React · Vite · Supabase</dd></div>
+              </dl>
+            </div>
+
+            <div class="case__gallery">
+              <figure class="case__shot case__shot--a">
+                <img src="/assets/cases/strela-2-mid.webp" alt="Блок форматов выступлений на сайте СТРЕЛА" width="1200" height="750" loading="lazy" decoding="async" />
+                <figcaption>Форматы</figcaption>
+              </figure>
+              <figure class="case__shot case__shot--b">
+                <img src="/assets/cases/strela-3-deep.webp" alt="Секция «Свободные даты тают» с формой брони на сайте СТРЕЛА" width="1200" height="750" loading="lazy" decoding="async" />
+                <figcaption>Бронь даты</figcaption>
+              </figure>
+              <figure class="case__shot case__shot--phone">
+                <img src="/assets/cases/strela-5-mob.webp" alt="Мобильная версия сайта СТРЕЛА" width="620" height="1268" loading="lazy" decoding="async" />
+                <figcaption>Мобильная</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- NIX — чёрно-белое кино -->
+        <article class="case" data-theme-section="mono">
+          <div class="shell">
+            <header class="case__head">
+              <span class="case__index" aria-hidden="true">02</span>
+              <div>
+                <p class="case__client">NIX · стример и контент-мейкер</p>
+                <h3 class="case__title">NIX — сайт стримера с собственной CMS</h3>
+              </div>
+            </header>
+
+            <figure class="case__lead" data-case-media>
+              <img src="/assets/cases/nix-1-hero.webp" alt="Первый экран сайта NIX — чёрно-белый кинематографичный хиро с видео-интро" width="1440" height="900" loading="lazy" decoding="async" />
+            </figure>
+
+            <div class="case__info">
+              <p class="case__text">
+                Кинематографичный сайт с видео-интро и полноценной панелью управления:
+                редактор всех секций, история изменений, сбор и обработка заявок
+                от рекламодателей и партнёров.
+              </p>
+              <dl class="case__facts">
+                <div><dt>Задача</dt><dd>Принимать заявки от рекламодателей в одном месте</dd></div>
+                <div><dt>Что внутри</dt><dd>Видео-интро, редактор всех секций, история изменений, панель лидов</dd></div>
+                <div><dt>Стек</dt><dd>React · SCSS · Supabase</dd></div>
+              </dl>
+            </div>
+
+            <div class="case__gallery">
+              <figure class="case__shot case__shot--a">
+                <img src="/assets/cases/nix-2-mid.webp" alt="Секция Platforms на сайте NIX: показатели по Twitch, YouTube, Telegram и TikTok" width="1200" height="750" loading="lazy" decoding="async" />
+                <figcaption>Площадки</figcaption>
+              </figure>
+              <figure class="case__shot case__shot--b">
+                <img src="/assets/cases/nix-3-deep.webp" alt="Секция Partners на сайте NIX: бренды, целевая аудитория и форматы сотрудничества" width="1200" height="750" loading="lazy" decoding="async" />
+                <figcaption>Партнёры</figcaption>
+              </figure>
+              <figure class="case__shot case__shot--phone">
+                <img src="/assets/cases/nix-4-mob.webp" alt="Мобильная версия сайта NIX" width="620" height="1268" loading="lazy" decoding="async" />
+                <figcaption>Мобильная</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- КОМПРОМАТ — неон -->
+        <article class="case" data-theme-section="neon">
+          <div class="shell">
+            <header class="case__head">
+              <span class="case__index" aria-hidden="true">03</span>
+              <div>
+                <p class="case__client">КОМПРОМАТ · кузовной центр</p>
+                <h3 class="case__title">Wow-лендинг с 3D-машиной</h3>
+              </div>
+            </header>
+
+            <figure class="case__lead" data-case-media>
+              <img src="/assets/cases/komp-1-hero.webp" alt="Первый экран лендинга КОМПРОМАТ — неоновая розовая вывеска в стиле японских уличных гонок" width="1440" height="900" loading="lazy" decoding="async" />
+            </figure>
+
+            <div class="case__info">
+              <p class="case__text">
+                Неоновый лендинг в стиле японских уличных гонок. Фишка — процедурная
+                3D Toyota Mark II, которая собирается из деталей по мере скролла:
+                диагностика → рихтовка → покраска → готово.
+              </p>
+              <dl class="case__facts">
+                <div><dt>Задача</dt><dd>Объяснить процесс ремонта так, чтобы досмотрели до конца</dd></div>
+                <div><dt>Что внутри</dt><dd>Процедурная 3D-модель, сборка машины по скроллу, четыре этапа работ</dd></div>
+                <div><dt>Стек</dt><dd>Three.js · WebGL · GSAP</dd></div>
+              </dl>
+            </div>
+
+            <div class="case__gallery">
+              <figure class="case__shot case__shot--a">
+                <img src="/assets/cases/komp-2-mid.webp" alt="Этап диагностики: каркас Toyota Mark II светится неоном" width="1200" height="750" loading="lazy" decoding="async" />
+                <figcaption>Диагностика</figcaption>
+              </figure>
+              <figure class="case__shot case__shot--b">
+                <img src="/assets/cases/komp-3-deep.webp" alt="Финальный этап: полностью собранная 3D-модель Toyota Mark II в неоне, «Готово к выдаче»" width="1200" height="750" loading="lazy" decoding="async" />
+                <figcaption>Готово к выдаче</figcaption>
+              </figure>
+              <figure class="case__shot case__shot--phone">
+                <img src="/assets/cases/komp-4-mob.webp" alt="Мобильная версия лендинга КОМПРОМАТ" width="620" height="1268" loading="lazy" decoding="async" />
+                <figcaption>Мобильная</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- а ещё делал -->
+        <div class="more shell" data-theme-section="void">
+          <div class="section-head">
+            <span class="section-num">01.4</span>
+            <h2 data-split>А ещё делал</h2>
+          </div>
+          <div class="more__grid">
+            <div class="more__item" data-fade>
+              <span class="more__num">01</span>
+              <strong>Онлайн-голосование</strong>
+              <span>резервная система для конкурса «Мисс и Мистер ВВГУ» — выдержала пиковую нагрузку финала</span>
+            </div>
+            <div class="more__item" data-fade>
+              <span class="more__num">02</span>
+              <strong>Расписание участников</strong>
+              <span>репетиции и фотосессии конкурса в живом календаре — использовалось командой каждый день</span>
+            </div>
+            <div class="more__item" data-fade>
+              <span class="more__num">03</span>
+              <strong>Telegram-боты</strong>
+              <span>от приёма заявок до бота-ведущего игры Among Us вживую на 20+ человек</span>
+            </div>
+            <div class="more__item" data-fade>
+              <span class="more__num">04</span>
+              <strong>Коммерческие заказы</strong>
+              <span>сайт для «Приморского газа» и другие проекты под задачи бизнеса</span>
+            </div>
+            <div class="more__item" data-fade>
+              <span class="more__num">05</span>
+              <strong>Преподаю разработку</strong>
+              <span>мастер-класс «Создай свой сайт на React» для школьников — от нуля до готового проекта</span>
+            </div>
+            <div class="more__item" data-fade>
+              <span class="more__num">06</span>
+              <strong>Мобильные приложения</strong>
+              <span>Flutter и React Native — когда задачу не закрывает сайт и нужно приложение</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ АКТ III — УСЛУГИ ═══ -->
+      <section class="section" id="services" data-theme-section="void">
+        <div class="shell">
+          <div class="section-head">
+            <span class="section-num">02 / Услуги</span>
+            <h2 data-split>Форматы</h2>
+          </div>
+
+          <div class="services">
+            <div class="service" data-tilt data-fade>
+              <h3>Сайт-визитка</h3>
+              <p class="service__price">от 20 000 ₽</p>
+              <p class="service__time">5–7 дней</p>
+              <ul>
+                <li>Одностраничный сайт под твой стиль</li>
+                <li>Услуги, работы, отзывы, контакты</li>
+                <li>Кнопка «написать в Telegram / WhatsApp»</li>
+                <li>Домен и хостинг — помогу настроить</li>
+              </ul>
+            </div>
+
+            <div class="service service--featured" data-tilt data-fade>
+              <p class="service__badge">Чаще всего берут</p>
+              <h3>Сайт с админкой</h3>
+              <p class="service__price">от 40 000 ₽</p>
+              <p class="service__time">10–14 дней</p>
+              <ul>
+                <li>Всё из «визитки»</li>
+                <li>Панель управления: сам меняешь цены, фото, тексты</li>
+                <li>Сбор заявок с уведомлением в Telegram</li>
+                <li>Бронирование дат, календарь, каталог</li>
+              </ul>
+            </div>
+
+            <div class="service" data-tilt data-fade>
+              <h3>Wow-лендинг</h3>
+              <p class="service__price">от 60 000 ₽</p>
+              <p class="service__time">от 14 дней</p>
+              <ul>
+                <li>3D-сцены, скролл-анимации, видео</li>
+                <li>Сайт, который пересылают друзьям</li>
+                <li>Под событие, продукт или запуск</li>
+                <li>Как лендинг «КОМПРОМАТ» выше</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Не только сайты: остальные продукты той же логикой -->
+          <div class="services services--secondary">
+            <div class="service" data-tilt data-fade>
+              <h3>Telegram-бот</h3>
+              <p class="service__price">от 15 000 ₽</p>
+              <p class="service__time">3–7 дней</p>
+              <ul>
+                <li>Приём заявок, запись, оплата</li>
+                <li>Рассылки и напоминания клиентам</li>
+                <li>Админ-панель прямо в боте</li>
+              </ul>
+            </div>
+
+            <div class="service" data-tilt data-fade>
+              <h3>VK-бот</h3>
+              <p class="service__price">от 15 000 ₽</p>
+              <p class="service__time">3–7 дней</p>
+              <ul>
+                <li>Автоответы и меню в сообществе</li>
+                <li>Заявки из ВК прямо тебе в Telegram</li>
+                <li>Связка с сайтом и общей базой</li>
+              </ul>
+            </div>
+
+            <div class="service" data-tilt data-fade>
+              <h3>Мобильное приложение</h3>
+              <p class="service__price">от 90 000 ₽</p>
+              <p class="service__time">от 30 дней</p>
+              <ul>
+                <li>Android и iOS из одной кодовой базы</li>
+                <li>Flutter или React Native</li>
+                <li>Помогу с публикацией в сторы</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="services__note" data-fade>
+            Точная цена — после короткого созвона или переписки: зависит от объёма.
+            Первый макет главного экрана показываю до предоплаты. Нужна связка
+            «сайт + бот» или что-то нестандартное — обсудим, считаю отдельно.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══ АКТ IV — ПРОЦЕСС (горизонталь) ═══ -->
+      <section class="process" id="process" data-theme-section="void">
+        <div class="process__viewport">
+          <!-- Шапка держится на месте, пока лента едет вбок: иначе
+               пользователь теряет контекст, в какой он секции. -->
+          <div class="process__bar shell">
+            <span class="section-num">03 / Процесс</span>
+            <h2 data-split>Как работаем</h2>
+            <p>Четыре шага от первого сообщения до запуска. Без сюрпризов по срокам и цене.</p>
+          </div>
+
+          <div class="process__track" id="process-track">
+            <div class="process__step">
+              <p class="process__num">01</p>
+              <h3>Разговор</h3>
+              <p>15–20 минут в Telegram или на созвоне: кто ты, кто твои клиенты, что сайт должен делать.</p>
+            </div>
+
+            <div class="process__step">
+              <p class="process__num">02</p>
+              <h3>Макет главной</h3>
+              <p>Через 2–3 дня показываю первый экран. Не нравится — переделываю или расходимся без денег.</p>
+            </div>
+
+            <div class="process__step">
+              <p class="process__num">03</p>
+              <h3>Сборка</h3>
+              <p>Собираю сайт целиком, наполняю твоим контентом, показываю по ходу — правки вносим сразу.</p>
+            </div>
+
+            <div class="process__step">
+              <p class="process__num">04</p>
+              <h3>Запуск</h3>
+              <p>Домен, хостинг, аналитика. Две недели бесплатных правок после запуска и инструкция к админке.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ АКТ V — ОБО МНЕ ═══ -->
+      <section class="section" id="about" data-theme-section="void">
+        <div class="shell">
+          <div class="section-head">
+            <span class="section-num">04 / Обо мне</span>
+            <h2 data-split>Денис</h2>
+          </div>
+
+          <div class="about__grid about__grid--noportrait">
+            <div class="about__text">
+              <p data-fade>
+                Привет, я Денис. Пишу код каждый день: сайты, веб-приложения,
+                мобильные приложения и Telegram-боты.
+              </p>
+              <p data-fade>
+                Живу во Владивостоке — можем встретиться лично, а работаю
+                с клиентами из любого города.
+              </p>
+              <p data-fade>
+                Работаю и с людьми, и с компаниями: ведущие, артисты, фотографы,
+                автосервисы, эксперты, различный бизнес. Разница не в том, кто
+                заказчик, а в том, что должно случиться после — заявка, запись,
+                звонок. От этого и строю сайт.
+              </p>
+            </div>
+
+            <div class="about__side">
+              <dl class="about__facts" data-fade>
+                <div><dt>Где</dt><dd>Владивосток, UTC+10. Работаю по всей России, во Владивостоке можем встретиться лично</dd></div>
+                <div><dt>Связь</dt><dd>Telegram и ВК. Отвечаю в течение дня</dd></div>
+                <div><dt>Чем закрываю</dt><dd>Сайты, Telegram- и VK-боты, мобильные приложения</dd></div>
+              </dl>
+
+              <ul class="about__stack" data-fade>
+                <li>React</li>
+                <li>TypeScript</li>
+                <li>Three.js</li>
+                <li>GSAP</li>
+                <li>Supabase</li>
+                <li>Python</li>
+                <li>Flutter</li>
+                <li>React Native</li>
+                <li>Telegram Bot API</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Снятие риска вместо портрета: доверие даёт не лицо,
+               а понимание, что будет, если что-то пойдёт не так. -->
+          <div class="promises">
+            <h3 class="promises__title">Чем я рискую вместе с тобой</h3>
+            <ul class="promises__grid">
+              <li class="promises__item" data-fade>
+                <span class="promises__num">01</span>
+                <strong>Макет — до предоплаты</strong>
+                <span>Первый экран показываю раньше, чем ты заплатишь. Не нравится — переделываю или расходимся без денег.</span>
+              </li>
+              <li class="promises__item" data-fade>
+                <span class="promises__num">02</span>
+                <strong>Цена и срок фиксируются</strong>
+                <span>Договорились на берегу — дальше без «всплыли доработки» и сдвигов задним числом.</span>
+              </li>
+              <li class="promises__item" data-fade>
+                <span class="promises__num">03</span>
+                <strong>Две недели правок после запуска</strong>
+                <span>Бесплатно. Сайт живой, всегда что-то хочется поправить — это нормально и заложено.</span>
+              </li>
+              <li class="promises__item" data-fade>
+                <span class="promises__num">04</span>
+                <strong>Ты не привязан ко мне</strong>
+                <span>Отдаю доступы, код и инструкцию к админке. Дальше справишься сам или с любым другим разработчиком.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ФИНАЛ — выход на свет ═══ -->
+      <section class="cta" data-theme-section="cream">
+        <div class="shell">
+          <h2 class="cta__title" data-split>
+            Расскажи задачу — предложу, <em>чем её закрыть</em>
+          </h2>
+          <p class="cta__sub" data-fade>Это бесплатно и ни к чему не обязывает. Отвечаю быстро.</p>
+          <div class="cta__actions" data-fade>
+            <a class="btn btn--lg" href="https://t.me/WhoaThatsLimp" target="_blank" rel="noopener" data-magnetic data-cursor="Написать">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.4 18.9 19c-.2 1-.8 1.2-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-.9.5l.3-4.6L18.3 7c.4-.3-.1-.5-.6-.2L7.4 13.3l-4.5-1.4c-1-.3-1-1 .2-1.4L20.6 3c.8-.3 1.5.2 1.3 1.4Z"/></svg>
+              Написать в Telegram
+            </a>
+          </div>
+          <p class="cta__alt" data-fade>или <a href="https://vk.com/Limmmp" target="_blank" rel="noopener">ВКонтакте</a></p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer" data-theme-section="cream">
+      <p>© 2026 Денис · Владивосток</p>
+      <p>
+        <a href="https://t.me/WhoaThatsLimp" target="_blank" rel="noopener">Telegram</a> ·
+        <a href="https://vk.com/Limmmp" target="_blank" rel="noopener">VK</a>
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

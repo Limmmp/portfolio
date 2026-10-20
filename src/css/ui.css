@@ -1,0 +1,236 @@
+/* ============================================================
+   UI — прелоадер, шапка, кнопки, курсор, прогресс
+   ============================================================ */
+
+/* ---------- прелоадер ---------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: #050507;
+  display: grid;
+  place-items: center;
+  color: #f4f2ec;
+}
+
+.preloader__inner {
+  width: min(560px, 82vw);
+  text-align: left;
+}
+
+.preloader__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #8f8d86;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.preloader__count {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(56px, 12vw, 130px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.preloader__bar {
+  margin-top: 26px;
+  height: 1px;
+  background: #26262e;
+  position: relative;
+  overflow: hidden;
+}
+.preloader__fill {
+  position: absolute;
+  inset: 0;
+  background: #d4ff4f;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* ---------- шапка ---------- */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px var(--pad);
+  color: var(--fg);
+  /* Лёгкая подложка: шапка проходит над скриншотами кейсов,
+     на голом тексте они бы просвечивали сквозь буквы. */
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    background var(--theme-ms) ease,
+    color var(--theme-ms) ease;
+}
+
+.header.is-hidden { transform: translateY(-110%); }
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.nav { display: flex; gap: clamp(16px, 2vw, 34px); }
+.nav a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  position: relative;
+  padding-block: 4px;
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav a:hover::after, .nav a.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- кнопки ---------- */
+.btn {
+  --btn-bg: var(--accent);
+  --btn-fg: var(--accent-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 999px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bg);
+  font-weight: 700;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s ease, border-color var(--theme-ms) ease, background var(--theme-ms) ease;
+}
+
+/* Заливка снизу вверх на ховере */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fg);
+  transform: translateY(101%);
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.btn:hover::before { transform: translateY(0); }
+.btn:hover { color: var(--bg); }
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--fg);
+  border-color: var(--line);
+}
+.btn--ghost:hover { color: var(--bg); }
+
+.btn--sm { padding: 10px 20px; font-size: 13px; }
+.btn--lg { padding: 20px 44px; font-size: 17px; }
+
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ---------- кастомный курсор ---------- */
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 200;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+}
+.cursor__dot {
+  position: absolute;
+  width: 7px; height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: #fff;
+}
+.cursor__ring {
+  position: absolute;
+  width: 38px; height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+.cursor__label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+/* Тачскрин и мыши нет — курсор не нужен */
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none; }
+}
+
+/* ---------- индикатор прогресса ---------- */
+.progress {
+  position: fixed;
+  right: var(--pad);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.progress__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.4s ease;
+}
+.progress__item span {
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.progress__item i {
+  display: block;
+  width: 22px; height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+.progress__item.is-active { color: var(--accent); }
+.progress__item.is-active span { opacity: 1; transform: none; }
+.progress__item.is-active i { width: 40px; opacity: 1; }
+
+@media (max-width: 1100px) { .progress { display: none; } }

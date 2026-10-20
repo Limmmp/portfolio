@@ -1,0 +1,160 @@
+/* ============================================================
+   ГЕРОЙ + МАНИФЕСТ
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* На коротких экранах отступы ужимаются вместе с кеглем */
+  padding: clamp(90px, 13vh, 130px) var(--pad) clamp(40px, 7vh, 70px);
+}
+
+.hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(24px, 4vh, 44px);
+}
+.hero__meta svg { width: 13px; height: 13px; color: var(--accent); }
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  /* Крупно, но не в ущерб первому экрану: ограничителем работает и высота
+     экрана — иначе заголовок разрастается на четыре строки и выталкивает
+     кнопки за сгиб. Более широкий max-width экономит целую строку. */
+  font-size: clamp(36px, min(7.4vw, 10.6vh), 118px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  max-width: 19ch;
+}
+
+/* Слово, которое несёт смысл, — засечками и курсивом. Ломает
+   монолит капса и намекает на «издательский» акт впереди. */
+.hero__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  /* Кегль засечек оптически меньше — компенсируем */
+  font-size: 1.08em;
+}
+
+.hero__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: clamp(36px, 6vh, 70px);
+}
+
+.hero__sub {
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: clamp(15px, 1.15vw, 18px);
+}
+
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* подсказка «скролль» */
+.hero__scroll {
+  position: absolute;
+  left: var(--pad);
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero__scroll-line {
+  display: block;
+  width: 1px; height: 46px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 40%;
+  background: var(--accent);
+  animation: scroll-run 1.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes scroll-run {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(250%); }
+}
+
+/* бегущая строка со стеком */
+.ticker {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  padding-block: 16px;
+  transition: border-color var(--theme-ms) ease;
+}
+.ticker__track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  will-change: transform;
+}
+.ticker__item {
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 0.9vw, 13px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.ticker__item::after {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ---------- манифест ---------- */
+.manifest {
+  padding-block: clamp(110px, 20vh, 240px);
+}
+
+.manifest__text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 3.4vw, 52px);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  max-width: 20ch;
+}
+
+/* Слова гаснут, пока скролл до них не дойдёт */
+.manifest__text .word {
+  display: inline-block;
+  opacity: 0.14;
+  transition: opacity 0.1s linear;
+}
+
+.manifest__note {
+  margin-top: clamp(30px, 5vh, 56px);
+  max-width: 40ch;
+  color: var(--muted);
+  font-size: clamp(15px, 1.1vw, 17px);
+}
+
+@media (max-width: 720px) {
+  .hero { min-height: 92svh; padding-top: 100px; }
+  .hero__title { max-width: none; }
+  .hero__cta .btn { flex: 1 1 100%; justify-content: center; }
+  .hero__scroll { display: none; }
+}

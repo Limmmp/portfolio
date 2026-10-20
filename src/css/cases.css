@@ -1,0 +1,248 @@
+/* ============================================================
+   КЕЙСЫ — каждый как отдельная глава со своим светом
+   ============================================================ */
+
+.works { position: relative; }
+
+.works__intro {
+  min-height: 52svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(60px, 9vh, 110px);
+}
+.works__intro h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 11vw, 170px);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+.works__intro p {
+  margin-top: 24px;
+  max-width: 44ch;
+  color: var(--muted);
+}
+
+.case {
+  position: relative;
+  padding-block: clamp(70px, 11vh, 130px);
+}
+
+/* ---------- шапка кейса ---------- */
+.case__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(20px, 3vw, 48px);
+  align-items: start;
+  margin-bottom: clamp(28px, 4vh, 48px);
+}
+
+/* Огромный контурный номер — графика, которой не хватало */
+.case__index {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(56px, 8vw, 130px);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--accent);
+  user-select: none;
+}
+
+.case__client {
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 0.8vw, 12px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.case__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(24px, 3.4vw, 54px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  /* Узко намеренно: правее живёт 3D-объект, и длинная строка
+     заезжала прямо на него, теряя читаемость. */
+  max-width: 13ch;
+}
+
+/* В кремовом акте тот же блок живёт по законам другого мира */
+:root[data-theme='cream'] .case__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-size: clamp(28px, 3.8vw, 60px);
+}
+
+/* ---------- ведущий кадр ---------- */
+.case__lead {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  /* Шторка снизу вверх — кадр проявляется по скроллу */
+  clip-path: inset(0 0 100% 0);
+  transition: border-color var(--theme-ms) ease;
+}
+.case__lead img {
+  width: 100%;
+  /* Кадры сняты 1440×900 — та же пропорция, поэтому ничего не срезается */
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  will-change: transform;
+}
+
+/* ---------- текст и факты ---------- */
+.case__info {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  margin-top: clamp(28px, 4vh, 48px);
+  align-items: start;
+}
+
+.case__text {
+  color: var(--muted);
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.6;
+}
+
+.case__facts {
+  display: grid;
+  gap: 1px;
+  border-top: 1px solid var(--line);
+  transition: border-color var(--theme-ms) ease;
+}
+.case__facts > div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 16px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--line);
+  transition: border-color var(--theme-ms) ease;
+}
+.case__facts dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.case__facts dd { font-size: 14px; line-height: 1.5; }
+
+/* ---------- галерея ---------- */
+.case__gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(12px, 1.5vw, 22px);
+  margin-top: clamp(20px, 3vh, 34px);
+}
+
+.case__shot {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: border-color var(--theme-ms) ease;
+}
+.case__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.case__shot:hover img { transform: scale(1.03); }
+
+/* Два широких кадра и один телефон рядом */
+.case__shot--a     { grid-column: span 5; aspect-ratio: 16 / 10; }
+.case__shot--b     { grid-column: span 4; aspect-ratio: 16 / 10; }
+.case__shot--phone { grid-column: span 3; aspect-ratio: 3 / 4.4; }
+
+.case__shot figcaption {
+  position: absolute;
+  left: 12px; bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--fg);
+  border: 1px solid var(--line);
+}
+
+/* ---------- «а ещё делал» ---------- */
+.more { padding-block: clamp(70px, 11vh, 140px); }
+
+/* Рамки на самих карточках, а не фон под сеткой: иначе незаполненный
+   остаток последнего ряда светится пустым прямоугольником. */
+.more__grid {
+  display: grid;
+  /* 340px даёт ровно три колонки на десктопе: шесть карточек ложатся
+     в два полных ряда без дыр в хвосте. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.more__item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: clamp(22px, 2.4vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease, background var(--theme-ms) ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.more__item:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.more__num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+.more__item strong {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(15px, 1.2vw, 18px);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.more__item span { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+/* ---------- адаптив ---------- */
+@media (max-width: 900px) {
+  .case__head { grid-template-columns: 1fr; gap: 10px; }
+  .case__info { grid-template-columns: 1fr; }
+  .case__gallery { grid-template-columns: repeat(6, 1fr); }
+  .case__shot--a { grid-column: span 6; }
+  .case__shot--b { grid-column: span 3; }
+  .case__shot--phone { grid-column: span 3; }
+}
+
+@media (max-width: 560px) {
+  .case__facts > div { grid-template-columns: 1fr; gap: 4px; }
+  .case__gallery { grid-template-columns: 1fr; }
+  .case__shot--a, .case__shot--b, .case__shot--phone { grid-column: span 1; }
+  .case__shot--phone { aspect-ratio: 16 / 10; }
+}
