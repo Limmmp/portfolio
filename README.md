@@ -1,5 +1,29 @@
+<div align="center">
+
+<img src="docs/hero.jpg" alt="Портфолио — Денис">
+
 # Портфолио — Денис
 
+**Сайт, который меняет облик по мере скролла: каждый кейс перекрашивает страницу в свою палитру.**
+
+<img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite"> <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=threedotjs&logoColor=white" alt="Three.js"> <img src="https://img.shields.io/badge/GSAP-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"> <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel">
+
+</div>
+
+<table>
+<tr>
+<td align="center" valign="top"><img src="docs/cases.jpg" alt="Кейсы"></td>
+<td align="center" valign="top"><img src="docs/mobile.jpg" alt="Мобильная версия" width="220"></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center" valign="top"><img src="docs/case-strela.jpg" alt="Кейс СТРЕЛА"></td>
+<td align="center" valign="top"><img src="docs/formats.jpg" alt="Форматы и цены"></td>
+</tr>
+</table>
+
+<!-- header:end -->
 Одностраничник на Vite + Three.js + GSAP. Сайт меняет облик по мере скролла:
 каждый кейс перекрашивает страницу в свою палитру, поэтому портфолио само
 показывает диапазон, а не рассказывает о нём.
